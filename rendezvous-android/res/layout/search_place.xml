@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:isScrollContainer="true" android:padding="2px">
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/searchLayout"
+		android:orientation="horizontal" android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<EditText android:id="@+id/searchPlaceBox"
+			android:singleLine="true" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_weight="6" />
+
+		<ImageView android:id="@+id/search_place_button"
+			android:src="@drawable/ic_menu_search" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_weight="1" />
+	</LinearLayout>
+
+	<ListView android:id="@+id/PlacesLV" android:layout_height="900dip"
+		android:layout_width="match_parent" android:layout_below="@+id/searchLayout"></ListView>
+
+</RelativeLayout>

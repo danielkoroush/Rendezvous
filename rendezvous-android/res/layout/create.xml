@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:scrollbars="horizontal|vertical" android:layout_height="fill_parent"
+	android:fillViewport="true" android:layout_width="fill_parent">
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="match_parent" android:layout_height="wrap_content">
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="match_parent" android:layout_height="wrap_content">
+
+			<TextView android:layout_width="wrap_content"
+				android:textStyle="bold" android:layout_height="wrap_content"
+				android:text="Title:" />
+
+			<EditText android:id="@+id/eventTitle" android:layout_width="fill_parent"
+				android:singleLine="true" android:layout_height="wrap_content"
+				android:hint="Please enter an event title..." />
+
+			<TextView android:layout_width="wrap_content"
+				android:textStyle="bold" android:layout_height="wrap_content"
+				android:text="Guests:" />
+
+			<MultiAutoCompleteTextView android:id="@+id/invitee"
+				android:hint="Event Invitees(Optional)" android:layout_width="match_parent"
+				android:layout_height="wrap_content" />
+
+			<TextView android:layout_width="wrap_content"
+				android:textStyle="bold" android:layout_height="wrap_content"
+				android:text="Location:" />
+			
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="match_parent" android:layout_height="match_parent">
+				<EditText android:id="@+id/eventLocation"
+					android:hint="Enter venue name or browse nearby places..."
+					android:singleLine="true" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:layout_weight="3" />
+				<ImageView android:id="@+id/search_image" android:src="@drawable/places2"
+					android:layout_width="wrap_content" android:layout_height="match_parent"
+					android:layout_weight="1" />
+			</LinearLayout>
+
+			<TextView android:layout_width="wrap_content"
+				android:textStyle="bold" android:layout_height="wrap_content"
+				android:text="Description:" />
+
+			<EditText android:id="@+id/eventDesc" android:layout_width="fill_parent"
+				android:hint="Event Description(Optional)" android:layout_height="wrap_content" />
+
+			<TextView android:layout_width="wrap_content"
+				android:textStyle="bold" android:layout_height="wrap_content"
+				android:text="From:" />
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="match_parent" android:layout_height="match_parent">
+				<Button android:text="Date" android:layout_height="wrap_content"
+					android:id="@+id/start_date" android:layout_width="wrap_content"
+					android:layout_weight="1" />
+				<Button android:text="Time" android:layout_height="wrap_content"
+					android:id="@+id/start_time" android:layout_width="wrap_content"
+					android:layout_weight="1" />
+			</LinearLayout>
+			<TextView android:layout_width="wrap_content"
+				android:textStyle="bold" android:layout_height="wrap_content"
+				android:text="To:" />
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="match_parent" android:layout_height="match_parent">
+
+				<Button android:id="@+id/end_date" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="Date"
+					android:layout_weight="1" />
+
+				<Button android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/end_time"
+					android:text="Time" android:layout_weight="1" />
+			</LinearLayout>
+		</LinearLayout>
+		<RadioGroup android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="vertical"
+			android:id="@+id/QueGroup1">
+			<RadioButton android:checked="true" android:id="@+id/option1"
+				android:text="Private Event" />
+			<RadioButton android:checked="false" android:id="@+id/option2"
+				android:text="Public Event" />
+		</RadioGroup>
+		<LinearLayout android:layout_width="fill_parent"
+			android:fillViewport="true" android:layout_height="fill_parent"
+			android:layout_alignParentBottom="true">
+			<Button android:text="Send" android:id="@+id/create"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="1" />
+			<Button android:text="Cancel" android:id="@+id/cancelCreate"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="1" />
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>
+

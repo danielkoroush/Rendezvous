@@ -1,0 +1,116 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:scrollbars="horizontal|vertical" android:layout_height="fill_parent"
+	android:layout_width="fill_parent">
+
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:isScrollContainer="true" android:padding="2px">
+		<ImageView android:id="@+id/EventIcon" android:layout_width="105dip"
+			android:layout_height="105dip" android:layout_marginRight="5dip"
+			android:layout_marginTop="10dip" android:layout_marginLeft="5dip"
+			android:paddingBottom="40dip" android:src="@drawable/event_thumb" />
+
+		<TextView android:id="@+id/EventTitle" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="TITLE TILE TILE TILE TILE TILE TILE "
+			android:textSize="19sp" android:textStyle="bold"
+			android:layout_toRightOf="@+id/EventIcon" />
+
+		<TextView android:id="@+id/EventStart" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_below="@id/EventTitle"
+			android:layout_toRightOf="@id/EventIcon" android:textSize="15sp"
+			android:text="EventStart" />
+
+		<TextView android:layout_width="wrap_content" android:id="@+id/EventEnd"
+			android:layout_height="wrap_content" android:textSize="12sp"
+			android:layout_below="@id/EventStart" android:layout_toRightOf="@id/EventIcon"
+			android:text="Cancel" />
+
+		<TextView android:id="@+id/EventRsvp" android:layout_width="wrap_content"
+			android:textSize="12sp" android:layout_height="wrap_content"
+			android:layout_below="@+id/EventEnd" android:layout_toRightOf="@id/EventIcon"
+			android:text="RSVP: Status" />
+
+		<TextView android:id="@+id/EventRSVPLabel"
+			android:layout_width="wrap_content" android:layout_marginLeft="10dip"
+			android:layout_height="wrap_content" android:textStyle="bold"
+			android:layout_below="@+id/EventIcon" android:text="RSVP:" />
+
+		<Spinner  android:id="@+id/EventSpinner"
+			android:layout_width="fill_parent" android:layout_marginLeft="10dip"
+			android:layout_height="wrap_content" 
+			android:layout_below="@+id/EventRSVPLabel" />
+
+
+		<TextView android:id="@+id/EventHostLabel"
+			android:layout_width="wrap_content" android:layout_marginLeft="10dip"
+			android:layout_height="wrap_content" android:textStyle="bold"
+			android:layout_below="@+id/EventSpinner" android:text="Host:" />
+
+		<TextView android:id="@+id/EventHost" android:layout_width="wrap_content"
+			android:layout_marginLeft="10dip" android:layout_marginRight="10dip"
+			android:layout_height="wrap_content" android:paddingBottom="5dip"
+			android:layout_below="@+id/EventHostLabel" android:text="host" />
+
+		<TextView android:id="@+id/EventRsvps" android:layout_width="wrap_content"
+			android:layout_marginLeft="10dip" android:layout_marginRight="10dip"
+			android:textStyle="bold" android:layout_height="wrap_content"
+			android:layout_below="@+id/EventHost" android:text="RSVPs:" />
+
+		<TextView android:id="@+id/EventAttendingCount"
+			android:layout_marginLeft="10dip" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_below="@+id/EventRsvps"
+			android:layout_marginTop="10dip" />
+
+		<ImageView android:id="@+id/EventAttending"
+			android:layout_width="wrap_content" android:layout_marginLeft="5dip"
+			android:layout_marginRight="10dip" android:layout_height="wrap_content"
+			android:paddingBottom="5dip" android:layout_below="@+id/EventRsvps"
+			android:layout_toRightOf="@+id/EventAttendingCount" android:src="@drawable/accept2" />
+
+		<TextView android:id="@+id/EventDeclinedCount"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_below="@+id/EventRsvps" android:paddingBottom="5dip"
+			android:layout_marginTop="10dip" android:layout_toRightOf="@+id/EventAttending" />
+
+
+		<ImageView android:id="@+id/EventDeclined"
+			android:layout_width="wrap_content" android:layout_marginLeft="5dip"
+			android:layout_marginRight="10dip" android:layout_height="wrap_content"
+			android:paddingBottom="5dip" android:layout_below="@+id/EventRsvps"
+			android:src="@drawable/declined2" android:layout_toRightOf="@+id/EventDeclinedCount" />
+
+		<TextView android:id="@+id/EventMaybeCount"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_below="@+id/EventRsvps" android:paddingBottom="5dip"
+			android:layout_marginTop="10dip" android:layout_toRightOf="@+id/EventDeclined" />
+
+		<ImageView android:id="@+id/EventMaybe"
+			android:layout_toRightOf="@+id/EventMaybeCount" android:layout_width="wrap_content"
+			android:layout_marginLeft="5dip" android:layout_marginRight="10dip"
+			android:layout_height="wrap_content" android:paddingBottom="5dip"
+			android:layout_below="@+id/EventRsvps" android:src="@drawable/unsure2" />
+
+		<TextView android:id="@+id/EventAddress2"
+			android:layout_width="wrap_content" android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip" android:layout_height="wrap_content"
+			android:textStyle="bold" android:layout_below="@+id/EventAttending"
+			android:text="Venue:" />
+
+		<TextView android:id="@+id/EventAddress"
+			android:layout_width="wrap_content" android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip" android:layout_height="wrap_content"
+			android:layout_below="@+id/EventAddress2" android:paddingBottom="5dip"
+			android:text="Address" />
+
+		<TextView android:id="@+id/EventDescriptionLabel"
+			android:layout_width="wrap_content" android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip" android:layout_height="wrap_content"
+			android:textStyle="bold" android:layout_below="@+id/EventAddress"
+			android:text="Description:" />
+
+		<TextView android:id="@+id/EventDescription"
+			android:layout_width="wrap_content" android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip" android:layout_height="wrap_content"
+			android:layout_below="@+id/EventDescriptionLabel" />
+	</RelativeLayout>
+</ScrollView>

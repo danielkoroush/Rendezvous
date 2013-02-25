@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    
+    android:padding="6dip">
+    
+    <ImageView
+        android:id="@+id/icon2"
+        
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"        
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="6dip"        
+        android:src="@drawable/icon" />
+
+    <TextView  
+                android:layout_width="fill_parent"
+        android:id="@+id/secondLine"     
+        android:layout_toRightOf="@id/icon2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"        
+        android:singleLine="true"
+
+        android:text="Simple application that shows how to use RelativeLayout" />
+
+    <TextView
+                android:layout_width="fill_parent"
+    	android:id="@+id/place"    
+        android:layout_toRightOf="@id/icon2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/secondLine"
+        android:layout_alignWithParentIfMissing="true"
+                
+        android:gravity="center_vertical"
+        android:text="My Application" />
+
+</RelativeLayout>

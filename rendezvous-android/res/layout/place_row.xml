@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" 
+	android:layout_width="fill_parent" android:layout_height="?android:attr/listPreferredItemHeight">
+
+	<TextView android:id="@+id/place_Name" android:layout_width="fill_parent"
+		android:layout_height="0dip" android:textStyle="bold"
+		android:textSize="17sp" android:layout_weight="1" android:singleLine="true"
+		android:gravity="center_vertical" />
+
+	<TextView android:id="@+id/place_address" android:layout_width="fill_parent"
+		android:layout_height="0dip" android:layout_weight="1"
+		android:ellipsize="marquee" />
+
+</LinearLayout>

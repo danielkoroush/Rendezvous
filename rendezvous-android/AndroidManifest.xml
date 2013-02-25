@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="rendezvous.app"
+      android:versionCode="3"
+      android:versionName="1.02">
+        <application android:icon="@drawable/icon" android:label="@string/app_name"  android:theme="@style/CustomTheme">
+        <activity android:name=".rendezvous"
+                  android:label="@string/app_name" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />         
+                <action android:name="android.intent.action.VIEW" />                
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+	<activity android:label="event_details" android:name="event_details" android:screenOrientation="portrait"></activity>
+	<activity android:label="event_details" android:name="event_details_activity" android:screenOrientation="portrait"></activity>
+    <activity android:label="event_details" android:name="suggestions_activity" android:screenOrientation="portrait"></activity>
+    <activity android:label="create" android:name="Create" android:screenOrientation="portrait"></activity>
+    <activity android:label="find_place" android:name="FindPlace" android:screenOrientation="portrait"></activity>
+    <activity android:label="search_place" android:name="Search_Place" android:screenOrientation="portrait"></activity>
+    <activity android:label="custom_place" android:name="Custom_Place" android:screenOrientation="portrait"></activity>
+    </application>
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-sdk android:minSdkVersion="7" 
+          android:targetSdkVersion="8" />
+<supports-screens android:largeScreens="true"
+        android:normalScreens="true" android:smallScreens="true"
+        android:resizeable="true" android:anyDensity="true" />
+        <uses-permission android:name="android.permission.READ_LOGS" />
+</manifest> 
