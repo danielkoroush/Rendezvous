@@ -1,0 +1,16 @@
+<local:MainViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:You.In" 
+    SampleProperty="Sample Text Property Value">
+    
+    <local:MainViewModel.Items>
+        <local:ItemViewModel EventTitle="event one" EventAddress="12312 NE 93rd Ave, Seattle, WA" EventDate="Today 8:00pm" EventConfirmed="4"/>
+        <local:ItemViewModel EventTitle="event two" EventAddress="Corner of Bell St and 4th in Belltown" EventDate="Dec 3rd 8:00pm" EventConfirmed="0"/>
+        <local:ItemViewModel EventTitle="event three" EventAddress="Nima's Place" EventDate="Dec 6rd 8:00pm" EventConfirmed="3"/>
+        <local:ItemViewModel EventTitle="event four" EventAddress="Amber Lounge" EventDate="Dec 17rd 8:00pm" EventConfirmed="9" />
+        <local:ItemViewModel EventTitle="event five" EventAddress="Another address" EventDate="Jan 1 2011 12:00pm" EventConfirmed="3" />
+        <local:ItemViewModel EventTitle="event six" EventAddress="second address" EventDate="Jan 12 2011 8:00pm" EventConfirmed="0"/>
+    </local:MainViewModel.Items>
+    
+</local:MainViewModel>

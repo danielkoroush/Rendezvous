@@ -1,0 +1,86 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="You.In.PivotPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:tilt="clr-namespace:You.In"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    tilt:TiltEffect.IsTiltEnabled="True"
+    xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Loaded="Pivot_Loaded">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="Friends">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="79" />
+                        <ColumnDefinition Width="377" />
+                    </Grid.ColumnDefinitions>
+                    <ListBox Height="300" HorizontalAlignment="Left" Margin="2,25,0,0" Name="listBox1" VerticalAlignment="Top" Width="453" SelectionMode="Multiple" Grid.ColumnSpan="2" SelectionChanged="listBox1_SelectionChanged">
+                    </ListBox>
+                    <Button Content="Facebook Friends" Height="72" HorizontalAlignment="Left" Margin="-8,565,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" Grid.ColumnSpan="2" />
+                    <Button Content="Phone Contacts" Height="72" HorizontalAlignment="Left" Margin="71,566,0,0" Name="button3" VerticalAlignment="Top" Width="236" Grid.Column="1" Click="button3_Click" />
+                    <Border BorderBrush="Silver" BorderThickness="1" Height="213" HorizontalAlignment="Left" Margin="3,354,0,0" Name="border1" VerticalAlignment="Top" Width="451" Grid.ColumnSpan="2" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="4,0,0,277" Name="textBlock1" Text="Invited:" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="#FF072DFF" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="5,-7,0,0" Name="textBlock2" Text="Contacts:" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold" Foreground="#FF072DFF" />
+                    <ListBox Grid.ColumnSpan="2" Height="210" HorizontalAlignment="Left" Margin="8,357,0,0" Name="listBox2" VerticalAlignment="Top" Width="443" />
+                </Grid>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="Places">
+                <Grid>
+                    <toolkit:DatePicker HorizontalAlignment="Left" Margin="3,44,0,0" Name="datePicker1" VerticalAlignment="Top" Height="63" Width="295" />
+                    <toolkit:TimePicker HorizontalAlignment="Left" Margin="4,129,0,0" Name="timePicker1" VerticalAlignment="Top" Height="81" Width="295" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="16,22,0,0" Name="textBlock3" Text="Date:" VerticalAlignment="Top" Foreground="#FF072DFF" FontWeight="Bold" FontFamily="Arial" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="14,112,0,0" Name="textBlock4" Text="Time" VerticalAlignment="Top" Foreground="#FF072DFF" FontFamily="Arial" FontWeight="Bold" />
+                    <TextBlock FontFamily="Arial" FontWeight="Bold" Foreground="#FF072DFF" Height="30" HorizontalAlignment="Left" Margin="14,212,0,0" Name="textBlock5" Text="Location:" VerticalAlignment="Top" />
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="3,226,0,0" Name="textBox1" Text="Lounge" VerticalAlignment="Top" Width="451" />
+                    <ListBox Height="210" HorizontalAlignment="Left" Margin="4,343,0,0" Name="listBox3" VerticalAlignment="Top" Width="448" />
+                    <Button Content="Search" Height="72" HorizontalAlignment="Left" Margin="4,552,0,0" Name="button4" VerticalAlignment="Top" Width="160" Click="button4_Click" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="11,307,0,0" Name="textBlock7" Text="Places" VerticalAlignment="Top" />
+                </Grid>
+            </controls:PivotItem>
+            <controls:PivotItem Header="My Events">
+                <Grid>
+                    <Button Content="Get My Events" Height="72" HorizontalAlignment="Left" Margin="29,534,0,0" Name="button5" VerticalAlignment="Top" Width="239" Click="button5_Click" />
+                    <ListBox Height="485" HorizontalAlignment="Left" Margin="18,26,0,0" Name="listBox4" VerticalAlignment="Top" Width="420" />
+                </Grid>
+            </controls:PivotItem>
+            <controls:PivotItem Header="Send">
+                <Grid>
+                    <RadioButton Content="Check-In" Height="72" HorizontalAlignment="Left" Margin="10,15,0,0" Name="radioButton1" VerticalAlignment="Top" />
+                    <RadioButton Content="Future Check-In" Height="72" HorizontalAlignment="Left" Margin="9,61,0,0" Name="radioButton2" VerticalAlignment="Top" />
+                    <RadioButton Content="Facebook Event" Height="72" HorizontalAlignment="Left" Margin="10,111,0,0" Name="radioButton3" VerticalAlignment="Top" Width="227" />
+                    <Button Content="Send" Height="72" HorizontalAlignment="Left" Margin="9,547,0,0" Name="button2" VerticalAlignment="Top" Width="160" Click="button2_Click" />
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+        <Image Height="31" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="480" Source="/You.In;component/Images/jamm-header.jpg" />
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+    
+</phone:PhoneApplicationPage>

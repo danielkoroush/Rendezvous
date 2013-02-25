@@ -1,0 +1,175 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="You.In.Create_Pivot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:data="clr-namespace:You.In"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <data:InviteeSuggesetBoxData x:Key="Users"></data:InviteeSuggesetBoxData>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.Resources>
+            <data:VisibilityConverter x:Key="Vis"/>
+        </Grid.Resources>
+        <Image Height="43" Source="/Images/app.toplogo.new.png" Stretch="Fill" VerticalAlignment="Top"/>
+        <!--Pivot Control-->
+        <controls:Pivot Margin="0,49,12,0" >
+            <!--Pivot item one-->
+            <controls:PivotItem Header="guests">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Row 0 is a 'placeholder' for the AutoCompleteBox control -->
+                    <ListBox 
+            Grid.Row="1"
+            x:Name="FirstListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17" Width="432">
+                                    <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
+                    <TextBlock Text="select guests:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+
+                    <Grid Grid.Row="0" Grid.RowSpan="2">
+                        <toolkit:AutoCompleteBox
+         
+                FilterMode="ContainsCaseSensitive"
+                x:Name="_autoCompleteBox"
+                ItemsSource="{Binding Users}"
+                VerticalAlignment="Top">
+                            <toolkit:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                </DataTemplate>
+                            </toolkit:AutoCompleteBox.ItemTemplate>
+                            <toolkit:AutoCompleteBox.Template>
+                                <ControlTemplate TargetType="toolkit:AutoCompleteBox">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBox
+                                x:Name="Text"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                FontFamily="{TemplateBinding FontFamily}"
+                                FontSize="{TemplateBinding FontSize}"
+                                FontStyle="{TemplateBinding FontStyle}"
+                                FontWeight="{TemplateBinding FontWeight}"
+                                Foreground="{TemplateBinding Foreground}"
+                                InputScope="{TemplateBinding InputScope}"
+                                Opacity="{TemplateBinding Opacity}"
+                                Padding="{TemplateBinding Padding}"
+                                Style="{TemplateBinding TextBoxStyle}"/>
+                                        <ListBox
+                                Margin="12"
+                                Visibility="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Vis}}"
+                                Grid.Row="1"
+                                x:Name="Selector"
+                                Background="White"
+                                FontFamily="{TemplateBinding FontFamily}"
+                                FontSize="{TemplateBinding FontSize}"
+                                FontStyle="{TemplateBinding FontStyle}"
+                                FontWeight="{TemplateBinding FontWeight}"
+                                Foreground="{TemplateBinding Foreground}"
+                                IsTabStop="False"
+                                ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
+                                ItemTemplate="{TemplateBinding ItemTemplate}"
+                                Opacity="{TemplateBinding Opacity}"
+                                BorderBrush="{StaticResource PhoneTextBoxEditBorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="0,8"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </toolkit:AutoCompleteBox.Template>
+                        </toolkit:AutoCompleteBox>
+                    </Grid>
+                    
+
+                    <StackPanel></StackPanel>
+                </Grid>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="new event">
+                <ScrollViewer>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="title:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                            <toolkit:PhoneTextBox Hint="optional"></toolkit:PhoneTextBox>
+                            <TextBlock Text="venue:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                            <toolkit:PhoneTextBox Hint="optional"></toolkit:PhoneTextBox>
+                            <TextBlock Text="start:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                            <Grid x:Name="peopleGrid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="256"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Width="300" Grid.Column="0">
+                                    <TextBox Width="302" Name="start_dateBox" MouseLeftButtonDown="start_dateBox_MouseLeftButtonDown"></TextBox>
+
+                                </StackPanel>
+                                <toolkit:TimePicker  Grid.Column="1" Height="95" Width="151" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Margin="0,0,15,-23" x:Name="timePicker1" ValueChanged="timePicker1_ValueChanged" />
+                            </Grid>
+                            <TextBlock Text="end:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="256"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Width="300" Grid.Column="0">
+                                    <TextBox Name="end_dateBox" MouseLeftButtonDown="end_dateBox_MouseLeftButtonDown"></TextBox>
+
+                                </StackPanel>
+                                <toolkit:TimePicker  Grid.Column="1" Height="95" Width="154" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="35,0,0,-23" x:Name="end_timePicker" />
+                            </Grid>
+                            <CheckBox Tag="Public Event" Name="isPublic" Content="public event" FontSize="{StaticResource PhoneFontSizeLarge}" Checked="isPublic_Checked" Unchecked="isPublic_Unchecked"></CheckBox>
+                            <TextBlock Text="description:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                            <toolkit:PhoneTextBox Hint="optional"></toolkit:PhoneTextBox>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </controls:PivotItem>
+        </controls:Pivot>
+        
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

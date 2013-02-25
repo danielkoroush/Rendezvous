@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WcfService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://paco.myvnc.com/Paco/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://paco.myvnc.com/Paco/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:complexType name="Trace">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CreatedDateTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SentDateTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SessionGuid" type="ser:guid" />
+          <xs:element minOccurs="0" name="SourceType" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="SourceVersion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TraceDetails" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TraceGuid" type="ser:guid" />
+          <xs:element minOccurs="0" name="TraceId" type="xs:int" />
+          <xs:element minOccurs="0" name="TraceLevel" type="xs:int" />
+          <xs:element minOccurs="0" name="TraceMessage" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TracePointGuid" type="ser:guid" />
+          <xs:element minOccurs="0" name="TracePointName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Trace" nillable="true" type="tns:Trace" />
+</xs:schema>

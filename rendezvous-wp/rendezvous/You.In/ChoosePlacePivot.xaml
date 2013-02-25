@@ -1,0 +1,100 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="You.In.ChoosePlacePivot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Image Height="43" Source="/Images/app.toplogo.new.png" Stretch="Fill" VerticalAlignment="Top"/>
+        <ProgressBar Height="8" HorizontalAlignment="Left" Name="progressBar1" VerticalAlignment="Top" Width="480"  Style="{StaticResource CustomIndeterminateProgressBar}" Foreground="White">
+            <ProgressBar.Background>
+                <SolidColorBrush />
+            </ProgressBar.Background>
+        </ProgressBar>
+        <!--Pivot Control-->
+        <controls:Pivot Name="TopPivot" Title="CHOOSE PLACE" Margin="0,60,0,0">
+            <!--Pivot item one-->
+            <!--Pivot item two-->
+            <controls:PivotItem Header="nearby">
+                <StackPanel Margin="0,0,0,0">
+                    <!--ContentPanel - place additional content here-->
+                    <Grid x:Name="SearchPanel" Margin="12,5,12,0">
+                        <StackPanel>
+                            <TextBox FontStretch="Normal" Width="380"  HorizontalAlignment="Left" Foreground="Gray" Margin="-12,0,7,0" Name="PlaceTitle" Text="{Binding srchTxt}" TextWrapping="Wrap" GotFocus="PlaceTitle_GotFocus" LostFocus="PlaceTitle_LostFocus" KeyDown="PlaceTitle_KeyDown">
+                                <TextBox.InputScope>
+                                    <InputScope>
+                                        <InputScope.Names>
+                                            <InputScopeName NameValue="Text"/>
+                                        </InputScope.Names>
+                                    </InputScope>
+                                </TextBox.InputScope>
+                            </TextBox>
+                            <Image Source="/Images/search.png" Width="48" Height="48" Margin="370,-70,12,0" HorizontalAlignment="Left" MouseLeftButtonDown="Image_MouseLeftButtonDown" />
+                            <ScrollViewer Height="422" HorizontalAlignment="Left" Margin="0,0,0,0" Name="scrollViewer2" VerticalAlignment="Top" Width="444" Grid.RowSpan="3">
+                                <ListBox Height="426" Margin="-12,10,0,0" Name="listBox2" Width="450" FontSize="25" FontFamily="Segoe WP Light"  ItemsSource="{Binding Items}" SelectionChanged="listBox2_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel Margin="1,-4,0,0" VerticalAlignment="Top">
+                                                <TextBlock Text="{Binding EventTitle}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextTitle2Style}" />
+                                                <TextBlock Text="{Binding EventAddress}" TextWrapping="NoWrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextAccentStyle}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </ScrollViewer>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </controls:PivotItem>
+            
+            <!--Pivot item three-->
+        </controls:Pivot>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

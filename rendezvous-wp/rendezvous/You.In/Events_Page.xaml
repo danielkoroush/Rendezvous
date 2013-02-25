@@ -1,0 +1,187 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="You.In.Events_Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tilt="clr-namespace:You.In"
+    xmlns:data="clr-namespace:You.In"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False"
+    tilt:TiltEffect.IsTiltEnabled="true">
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Margin="0,0,0,0">
+        <Image Height="43" Source="/Images/app.toplogo.new.png" Stretch="Fill" VerticalAlignment="Top"/>
+        <!--Pivot Control-->
+        <controls:Pivot Margin="0,60,12,0" SelectionChanged="Pivot_SelectionChanged" Name="menu">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="upcoming" Margin="12,20,0,0" TabIndex="1">
+                <!--Double line list with text wrapping-->
+                <ListBox x:Name="FirstListBox" Margin="0,0,0,0" ItemsSource="{Binding Items}" SelectionChanged="FirstListBox_SelectionChanged" Height="612">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Image Width="100"  HorizontalAlignment="Left" Stretch="UniformToFill" Margin="0,0,0,29" Height="100">
+                                    <Image.Clip>
+                                        <RectangleGeometry Rect="0,0,100,100"/>
+                                    </Image.Clip>
+                                    <Image.Source>
+                                        <BitmapImage UriSource="{Binding PicSource}" CreateOptions="BackgroundCreation"/>
+                                    </Image.Source>
+                                </Image>
+                                <StackPanel Margin="120,-4,0,0" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding EventTitle}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <Grid Width="350">
+                                        <TextBlock Text="{Binding EventAddress}" TextWrapping="NoWrap" Margin="12,-6,12,0" TextAlignment="Left" Style="{StaticResource PhoneTextAccentStyle}"/>
+                                        <Image Width="35" Height="35" Margin="12,-6,12,0" HorizontalAlignment="Right" >
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{Binding EventConfirmed}" CreateOptions="BackgroundCreation"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Grid>
+                                    <Grid Width="350">
+                                        <TextBlock Text="{Binding EventDate}" TextWrapping="Wrap" Margin="12,-6,12,0" TextAlignment="Left" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <TextBlock Text="{Binding EventTime}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" TextAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:PivotItem>
+            <controls:PivotItem Header="friends' events" Margin="12,20,0,0"  TabIndex="3">
+                <StackPanel>
+                    <toolkit:ListPicker
+                                Name="FriendsList"
+                                Header="Friends" 
+                                FullModeHeader="ACCENTS" 
+                                CacheMode="BitmapCache" Margin="12,12,12,18">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image  HorizontalAlignment="Left" Stretch="UniformToFill" Width="30" Height="30">
+                                        <Image.Clip>
+                                            <RectangleGeometry Rect="0,0,30,30"/>
+                                        </Image.Clip>
+                                        <Image.Source>
+                                            <BitmapImage UriSource="{Binding Pic}" CreateOptions="BackgroundCreation"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <TextBlock Text="{Binding Name}" Margin="12 0 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0 21 0 20">
+                                    <Image  HorizontalAlignment="Left" Stretch="UniformToFill" Width="50" Height="50">
+                                        <Image.Clip>
+                                            <RectangleGeometry Rect="0,0,50,50"/>
+                                        </Image.Clip>
+                                        <Image.Source>
+                                            <BitmapImage UriSource="{Binding Pic}" CreateOptions="BackgroundCreation"/>
+                                        </Image.Source> 
+                                    </Image>
+                                    <TextBlock Text="{Binding Name}"
+                                       Margin="16 0 0 0"
+                                       FontSize="43"
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ListPicker.FullModeItemTemplate>
+                    </toolkit:ListPicker>
+                    <ListBox x:Name="SuggestionListBox" Margin="0,0,-12,0" SelectionChanged="SuggestionListBox_SelectionChanged" Height="450" Width="453">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Image Width="100"  Height="100" Stretch="UniformToFill"  HorizontalAlignment="Left" Margin="0,0,0,29">
+                                        <Image.Clip>
+                                            <RectangleGeometry Rect="0,0,100,100"/>
+                                        </Image.Clip>
+                                        <Image.Source>
+                                            <BitmapImage UriSource="{Binding PicSource}" CreateOptions="BackgroundCreation"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <StackPanel Margin="120,-8,0,0" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding EventTitle}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                        <TextBlock Text="{Binding EventAddress}" TextWrapping="NoWrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextAccentStyle}"/>
+                                        <TextBlock Text="{Binding EventConfirmed}" TextWrapping="NoWrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <Grid Width="350">
+                                            <Grid Width="350">
+                                                <TextBlock Text="{Binding EventDate}" TextWrapping="Wrap" Margin="12,-6,12,0" TextAlignment="Left" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <TextBlock Text="{Binding EventTime}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" TextAlignment="Right"/>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </controls:PivotItem>
+            <controls:PivotItem Header="deals">
+                <StackPanel>
+                    <Image Height="67" Width="200" HorizontalAlignment="Left" Name="grouponLogo" Stretch="Fill" Source="/Images/powered_by_groupon.png" ></Image>
+                    <ListBox Name="dealListBox" Height="463" Margin="0,20,0,11"  SelectionChanged="dealListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="120">
+                                    <Image Width="120"  Height="120" Stretch="UniformToFill"  HorizontalAlignment="Left" Margin="0,0,0,29">
+                                        <Image.Clip>
+                                            <RectangleGeometry Rect="0,0,120,120"/>
+                                        </Image.Clip>
+                                         <Image.Source>
+                                            <BitmapImage UriSource="{Binding Small_Image}" CreateOptions="BackgroundCreation"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <StackPanel Margin="130,-8,0,0" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap"  Style="{StaticResource PhoneTextTitle3Style}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </controls:PivotItem>
+        </controls:Pivot>
+        <ProgressBar Height="10" HorizontalAlignment="Left" Margin="0,-2,0,0" Name="progressBar1" VerticalAlignment="Top" Width="500" Style="{StaticResource CustomIndeterminateProgressBar}" Foreground="White">
+            <ProgressBar.Background>
+                <SolidColorBrush />
+            </ProgressBar.Background>
+        </ProgressBar>
+        <!-- <TextBlock Text="Syncing with Facebook " TextWrapping="NoWrap" Margin="-290,55,0,0" TextAlignment="Left" Name="SyncMsg" Width="160" FontSize="15" Style="{StaticResource PhoneTextAccentStyle}" />-->
+        <!--
+        <phone:WebBrowser Visibility="Collapsed" Name="browser" Width="400" Height="600" />-->
+    </Grid>
+
+</phone:PhoneApplicationPage>

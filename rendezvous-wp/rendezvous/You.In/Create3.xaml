@@ -1,0 +1,143 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="You.In.Create3"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="clr-namespace:You.In"
+    xmlns:tilt="clr-namespace:You.In"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" shell:SystemTray.IsVisible="False"
+    tilt:TiltEffect.IsTiltEnabled="True"
+    d:DesignHeight="800" d:DesignWidth="480" Loaded="PhoneApplicationPage_Loaded_1">
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <phone:PhoneApplicationPage.Resources>
+        <data:InviteeSuggesetBoxData x:Key="Users"></data:InviteeSuggesetBoxData>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="Images/app.background.new.png" />
+        </Grid.Background>-->
+
+        <Image Height="43" Source="/Images/app.toplogo.new.png" Stretch="Fill" VerticalAlignment="Top"/>
+        <StackPanel Margin="0,60,0,0">
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel" Margin="12,5,0,5">
+                <!--<TextBlock x:Name="ApplicationTitle" Text="CREATE EVENT" Style="{StaticResource PhoneTextNormalStyle}"/>-->
+                <TextBlock x:Name="PageTitle" Text="new event" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            </StackPanel>
+            <Grid x:Name="ContentPanel" Margin="12,0,12,0">
+
+                <StackPanel x:Name="EventStart">
+
+                    <ContentControl Width="210" HorizontalAlignment="Left" Height="59">
+                 
+                                <TextBlock Text="guests:" Margin="-4,0,0,0" TextWrapping="NoWrap" FontSize="{StaticResource PhoneFontSizeLarge}" Foreground="{StaticResource PhoneForegroundBrush}" Width="282" Height="49" />
+                               
+                    </ContentControl>
+                    <Canvas Height="61" Name="canvas1" Width="444" Margin="0,5,0,0">
+                        <toolkit:AutoCompleteBox Canvas.Left="-13" Canvas.Top="-13" ItemsSource="{StaticResource Users}" Name="txtbox" Width="457" SelectionChanged="txtbox_SelectionChanged">
+                            <toolkit:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <!--<StackPanel  Name="{Binding Uid}">-->
+                                    <StackPanel>
+                                        <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}" Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </toolkit:AutoCompleteBox.ItemTemplate>
+                        </toolkit:AutoCompleteBox>
+                      
+                    </Canvas>
+                </StackPanel>
+            </Grid>
+
+  
+        </StackPanel>
+        <ScrollViewer Margin="-3,0,3,12" Grid.Row="1">
+            <StackPanel x:Name="stackPanel1" Margin="9,6,15,12" Grid.Row="1">
+
+                <StackPanel Name="invitees" ScrollViewer.VerticalScrollBarVisibility="Visible"></StackPanel>
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="title:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                        <toolkit:PhoneTextBox Hint="optional" Name="titleBox" SelectionChanged="titleBox_SelectionChanged" LostFocus="titleBox_LostFocus" GotFocus="titleBox_GotFocus" TextChanged="titleBox_TextChanged"></toolkit:PhoneTextBox>
+                        <TextBlock Text="venue:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                        
+                        <Grid Height="79">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="377"/>
+                                <ColumnDefinition Width="79"/>
+                            </Grid.ColumnDefinitions>
+                            <toolkit:PhoneTextBox Hint="optional" Name="venue" TextChanged="venue_TextChanged" GotFocus="venue_GotFocus" LostFocus="venue_LostFocus" HorizontalAlignment="Left" Width="377"></toolkit:PhoneTextBox>
+                            <Image  Grid.Column="1" Source="Images/search.png" Width="64" Height="60" HorizontalAlignment="Left" Margin="0,10,0,6" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                        </Grid>
+                        <TextBlock Text="start:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                        <Grid x:Name="peopleGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="256"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Width="300" Grid.Column="0">
+                                <TextBox Width="302" Name="start_dateBox" MouseLeftButtonDown="start_dateBox_MouseLeftButtonDown"></TextBox>
+                            </StackPanel>
+                            <toolkit:TimePicker  Grid.Column="1" Height="95" Width="151" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Margin="0,0,15,-23" x:Name="timePicker1" ValueChanged="timePicker1_ValueChanged" />
+                        </Grid>
+                        <TextBlock Text="end:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="256"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Width="300" Grid.Column="0">
+                                <TextBox Name="end_dateBox" MouseLeftButtonDown="end_dateBox_MouseLeftButtonDown"></TextBox>
+
+                            </StackPanel>
+                            <toolkit:TimePicker  Grid.Column="1" Height="95" Width="154" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="35,0,0,-23" x:Name="end_timePicker" ValueChanged="end_timePicker_ValueChanged_1" />
+                        </Grid>
+                        <CheckBox Tag="Public Event" Name="isPublic" Content="public event" FontSize="{StaticResource PhoneFontSizeLarge}" Checked="isPublic_Checked" Unchecked="isPublic_Unchecked"></CheckBox>
+                        <TextBlock Text="description:" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                        <TextBox Name="descBox" GotFocus="titleBox_GotFocus" TextChanged="descBox_TextChanged" LostFocus="titleBox_LostFocus"></TextBox>
+                    </StackPanel>
+                </Grid>
+
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+
+
+</phone:PhoneApplicationPage>
